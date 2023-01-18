@@ -42,16 +42,16 @@ We used two different testing methods:
 Each of the testing methods is elaborated in its own directory. 
 
 ## Results
-Update all README.md files (except for d-e, see Section 1). Specifically, replace all $$*TODO*…$$ according to the instructions inside the $$.
+Update all README.md files (except for d-e, see Section 1).
 
-## Detected Bugs
+## Detected Bug
 We detected the following bug:
    1. **General description:** 
-      In the case when those two user stories happen in parallel - the teacher is removing the student from the extra-time group while the student is attempting the quiz, the outcome can be unexpected. Here are the two possible outcomes:
+      In case when those two user stories happen in parallel - the teacher is removing the student from the extra-time group while the student is attempting the quiz, the outcome can be unexpected. Here are the two possible outcomes:
          
-         *a.* If the teacher removes the student from the group and after that the student is refresing the page/ moves to the next page, then if the original time of the quiz is up, the quiz will close, even though the timer shows differently.
+         *a.* The teacher is removing the student from the group, and then the student is refreshing the page/ moves to the next page. If the original time of the quiz is up, the quiz will be closed automatically, even though the timer shows differently.
       
-         *b.* If the last refresh of the student happens before the teacher removes him from the extra-time group, then the timer of the extra-time does not change automatically to the original time of the quiz, and the student gets the extra time until he refresh.
+         *b.* If the last refresh of the student happens before the teacher removes him from the extra-time group, then the timer of the extra-time does not change automatically to the original time of the quiz, and the student gets the extra time (he doesn't deserve anymore) until he refresh.
    2. **Steps to reproduce:**
 
          *a.* The student is in the extra-time group and is attempting the quiz.
