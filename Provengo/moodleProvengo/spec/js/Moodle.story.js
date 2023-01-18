@@ -1,7 +1,9 @@
 /* @provengo summon selenium */
 
 /**
- * This story opens a new browser window, goes to google.com, and searches for a pizza.
+ * This story opens a new browser window,
+ * logs in to the teacher account,
+ * removing the student from the extra-time group.
  */
 story('Teacher removes student from extra-time group', function () {
     with (new SeleniumSession().start("http://localhost/")) {
@@ -13,7 +15,10 @@ story('Teacher removes student from extra-time group', function () {
 })
 
 /**
- * This story opens a new browser window, goes to google.com, and searches for a pizza using the "I Feel Lucky" feature.
+ * This story opens a new browser window, 
+ * logs in as a student
+ * starting the quiz
+ * moving to the next page in the quiz.
  */
 story('Student moves to the next page in a quiz', function () {
     with (new SeleniumSession().start("http://localhost/")) {
