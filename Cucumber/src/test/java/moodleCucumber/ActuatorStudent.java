@@ -1,8 +1,7 @@
-package hellocucumber;
+package moodleCucumber;
 
 import org.openqa.selenium.*;
 
-import java.awt.Toolkit;
 import java.time.Duration;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -53,6 +52,9 @@ public class ActuatorStudent {
 
     public void quizHavingMoreThanOnePage() {
         assert this.driver.findElement(By.id("mod_quiz-next-nav")) != null;
+    }
 
+    public void quizContinuesFromNextPage() {
+        assert this.driver.findElement(By.xpath("//*[@value='Finish attempt ...']")) != null;
     }
 }
