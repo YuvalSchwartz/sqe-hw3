@@ -1,4 +1,4 @@
-package hellocucumber;
+package moodleCucumber;
 
 import io.cucumber.java.en.*;
 
@@ -58,6 +58,6 @@ public class StepDefinitions {
 
     @Then("The quiz continues from the next page")
     public void theQuizContinuesFromTheNextPage() {
-
+        this.actuatorStudent.quizContinuesFromNextPage();
     }
 }
