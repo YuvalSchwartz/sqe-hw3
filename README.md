@@ -2,31 +2,37 @@
 This is a repository for assignment 3 of the Software Quality Engineering course at the [Ben-Gurion University](https://in.bgu.ac.il/), Israel.
 
 ## Assignment Description
-In this assignment, we tested an open-source software called [$$*TODO* software name$$](https://address-of-the-project.com).
+In this assignment, we tested an open-source software called [Moodle](https://moodle.org).
 
-$$*TODO* Add some general description about the software$$
+Moodle is a free and open-source learning management system (LMS) used to create and manage online learning environments. It is designed to help educators create and manage online course materials, and it includes features such as quizzes, assignments, and discussion forums. It is widely used by schools and universities around the world.
 
 ## Installation
-$$*TODO* Write instructions on how to install the software and prepare the testing environment$$
+1. Go to the following link: https://download.moodle.org/windows/
+2. Download the zip file of the version of your choice (we recommend a stable version).
+3. Execute "Start Moodle" file.
+4. Now you can go to http://localhost/ to enter the moodle server.
+5. Whenever you are done, remember to execute "Stop Moodle" file.
 
 ## What we tested
-$$*TODO* Add a description of the module and the user stories that you chose to test.
-For example, in the case of the Moodle example, you can write something like this:
+We tested the quiz module that allows adding different groups of participants with properties that overrides the original quiz's properties. For example - get extra time for the quiz.
 
-We tested the quiz module that allows for creating and taking quizzes. We chose to test the following user stories: 
+ We chose to test the following user stories: 
 
-*User story:* A teacher adds a new quiz to the course with two yes/no questions
+*User story:* A teacher removes a student from extra-time group of a quiz.
 
-*Preconditions:* There is a course with a teacher
+*Preconditions:* 
+1. There is a course with a teacher, a student, and a quiz.
+2. The student is in an extra-time group of the quiz.
 
-*Expected outcome:* The quiz is added to the course.
+*Expected outcome:* The student is no longer in the extra time group, and he is no longer has an extra-time for the quiz.
 
-*User story:* A students attempts a quiz and answers correctly.
+*User story:* A students attempts a quiz and move to the next page.
 
-*Preconditions:* There is a course with a quiz with two yes/no questions and the quiz grade is calculated automatically and the grade is visible to the students upon submission.
+*Preconditions:*  There is a course with a student and a quiz with 2 pages.
 
-*Expected outcome:* The student receives 100.
-$$
+
+*Expected outcome:* The student moves to the next page successfully, and the quiz continues.
+
 
 ## How we tested
 We used two different testing methods:
@@ -39,14 +45,24 @@ Each of the testing methods is elaborated in its own directory.
 Update all README.md files (except for d-e, see Section 1). Specifically, replace all $$*TODO*…$$ according to the instructions inside the $$.
 
 ## Detected Bugs
-We detected the following bugs:
+We detected the following bug:
+   1. **General description:** 
+      In the case when those two user stories happen in parallel - the teacher is removing the student from the extra-time group while the student is attempting the quiz, the outcome can be unexpected. Here are the two possible outcomes:
+         
+         *a.* If the teacher removes the student from the group and after that the student is refresing the page/ moves to the next page, then if the original time of the quiz is up, the quiz will close, even though the timer shows differently.
+      
+         *b.* If the last refresh of the student happens before the teacher removes him from the extra-time group, then the timer of the extra-time does not change automatically to the original time of the quiz, and the student gets the extra time until he refresh.
+   2. **Steps to reproduce:**
 
-1. Bug 1: 
-   1. General description: ...
-   2. Steps to reproduce: ...
-   3. Expected result: ...
-   4. Actual result: ...
-   5. Link to the bug report: (you are encouraged to report the bug to the developers of the software)
-2. Bug 2: ...
+         *a.* The student is in the extra-time group and is attempting the quiz.
 
-$$*TODO* if you did not detect the bug, you can delete this section$$  
+         *b.* At the same time, the teacher is removing this student from the extra-time group.
+
+         *c.* The student is not refreshing the quiz in any way, and the timer remains the extra-time timer.
+
+         *d.* Then, after the original time is up but the timer is still running, the student is refreshing the page and quiz attempt finished automatically.
+
+
+   3. **Expected result:** The quiz ends according to the time that the timer is showing.
+   4. **Actual result:** If the student has been removed from the extra-time group and hasn't refreshed the quiz, the timer will not be updated automatically until it will be refreshed manually, and the quiz can be closed unexpectedly when refreshing.
+ 
